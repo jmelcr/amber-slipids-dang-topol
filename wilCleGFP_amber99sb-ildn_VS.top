@@ -1,0 +1,39 @@
+; forcefield parameters
+#include "forcefield-amber99sb-ildn+slipids+Dang-ions.itp"
+
+; Molecules
+#include "wilCleGFP_amber99sb-ildn_VS.itp"
+#include "POPCvs.itp"
+;#include "TIP3p.itp"
+#include "TIP3p_lowmass.itp"
+
+; unused molecules
+;#include "amber99sb-ildn.ff/ions.itp"
+;#include "amber99sb-ildn.ff/tip3p.itp"
+;#include "slipids.ff/tip3p.itp"
+
+; Include Position restraint file
+#ifdef POSRES
+#include "posre.itp"
+#endif
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+[ system ]
+; Name
+WilCleGFP (Amber) in POPC (Slipids) membrane with KCl (Dang)
+
+[ molecules ]
+; Compound        #mols
+Protein             1
+POPC              128
+;TIP3p           11910 
+TIP3p           11804 
+K                  56
+CL                 50
+
