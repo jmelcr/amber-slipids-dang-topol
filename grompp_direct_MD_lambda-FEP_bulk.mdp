@@ -27,16 +27,16 @@ nstfout                  = 0
 nstlog                   = 1000   ; 5ps
 nstcalcenergy            = 100    ; 0.5ps, default value=100 ; replex must be multiple of this value!
 nstenergy                = 1000   ; 5ps
-nstxtcout                = 200   ; 1ps
+nstxtcout                = 2000   ; 10ps
 xtc-precision            = 1000
-xtc-grps                 = 
+xtc-grps                 = Protein
 energygrps               = Protein Water_and_ions 
 nstlist                  = 25 ; .05ps, Gromacs manual says values>20 give the best performance (for GPUs)
 ns-type                  = grid ; grid search for neighbour list faster for larger sys. than simple
 ;Centre of mass movement removal
 comm-mode                = Linear
 nstcomm                  = 100 ; 1.0ps, This should suffice
-comm-grps                = 
+comm-grps                = Protein Water_and_ions 
 ;nstcheckpoint            = 2000   ;10ps
 
 ; OPTIONS FOR ELECTROSTATICS AND VDW

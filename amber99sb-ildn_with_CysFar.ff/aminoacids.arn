@@ -80,4 +80,9 @@
   CASH       O               OC2
   CASH       OXT             OC1
 
+; addition for Cysteine Farnesylated
+;  this is just a weird Gromacs-ish reanming conention to termini residues and it does nothing to the original topology (i.e. when I want to use the original CYF as C-term)
+  CYF  	     O 		     O 
+  CYF  	     OXT	     O2
+
 

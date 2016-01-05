@@ -28,8 +28,8 @@ nstfout                  = 0
 nstlog                   = 1000   ; 5ps
 nstcalcenergy            = 100    ; 0.5ps, default value=100 ; replex must be multiple of this value!
 nstenergy                = 1000   ; 5ps
-nstxtcout                = 200   ; 1ps
-xtc-precision            = 20000
+nstxtcout                = 2000   ; 10ps
+xtc-precision            = 1000
 xtc-grps                 = Protein
 energygrps               = Protein Water_and_ions 
 nstlist                  = 25 ; .05ps, Gromacs manual says values>20 give the best performance (for GPUs)
