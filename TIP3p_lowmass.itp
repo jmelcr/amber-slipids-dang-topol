@@ -7,9 +7,9 @@
 
 [ atoms ]
 ;	id   	Type	Res#	Res	       Name		q#	 q      mass
-	1       OWT3    1       SOL              OW             1       -0.834  2.0
-	2       HWT3    1       SOL             HW1             1        0.417  0.8
-	3       HWT3    1       SOL             HW2             1        0.417  0.8
+	1       OWT3    1       SOL              OW             1       -0.834  2.2
+	2       HWT3    1       SOL             HW1             1        0.417  0.9
+	3       HWT3    1       SOL             HW2             1        0.417  0.9
 
 
 

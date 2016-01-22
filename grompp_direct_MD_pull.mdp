@@ -4,31 +4,49 @@
 
 integrator               = md
 tinit                    = 0
-dt                       = 0.006  ; 6fs
-nsteps                   = 15000000 ; 90ns
-;nsteps                   = 5000000 ; 30ns
+dt                       = 0.005  ; 5fs
+nsteps                   = 4000000 ; 20ns
 init_step                = 0
 
-; ELECTRIC FIELD
-; E-z                      = 1 +0.1 0
+; Pull code
+pull    = umbrella
+;pull_geometry   = position ;distance      ; can't get PMF with direction
+pull_geometry   = cylinder  ;From the reference group a cylinder is selected around the axis go- ing through the pull group with direction pull-vec using two radii. The radius pull-r1 gives the radius within which all the relative weights are one, between pull-r1 and pull-r0 the weights are switched to zero.
+pull_r1         = 1.2 ;inner radius, weights 1 (test values)
+pull_r0         = 2.4 ;outer radius, weights gradually switched to 0
+pull_dim        = N N Y
+pull_start      = yes ;yes-define initial COM distance > 0
+pull_ngroups    = 2
+pull-group1-name     = POPC    ;reference group
+pull-group2-name     = lipid_tails ;pulled group
+pull-coord1-groups   = 1 2
+pull-coord1-vec      = 0.0 0.0 1.0          ; pull along z-axis
+pull-coord1-rate     = 0.00005       ; nm/ps, =5nm/100ns
+pull-coord1-k        =  250           ; kJ mol^-1 nm^-2
+;older gmx 4.x options
+;pull_rate1      = 0.00196        ; nm/ps (value from Lukas, "stronger/faster pulling")
+;pull_k1         = 1000           ; kJ mol^-1 nm^-2
+pull_nstxout    = 1000 ; 5ps
+pull_nstfout    = 1000
 
-nstxout                  = 2000000 ;12ns
-nstvout                  = 2000000 ;12ns
+
+nstxout                  = 2000000 ;10ns
+nstvout                  = 2000000 ;10ns
 nstfout                  = 0
-nstlog                   = 1000   ; 6ps
-nstcalcenergy            = 1000   ; 6ps, default value=100 (0.2ps); replex must be multiple of this value!
-nstenergy                = 1000   ; 6ps
-nstxtcout                = 1000   ; 6ps
+nstlog                   = 1000   ; 5ps
+nstcalcenergy            = 100    ; 0.5ps, default value=100 ; replex must be multiple of this value!
+nstenergy                = 1000   ; 5ps
+nstxtcout                = 1000   ; 5ps
 xtc-precision            = 1000
-xtc-grps                 = 
+xtc-grps                 = Protein POPC Ion
 energygrps               = Protein Water_and_ions POPC
 nstlist                  = 25 ; .05ps, Gromacs manual says values>20 give the best performance (for GPUs)
 ns-type                  = grid ; grid search for neighbour list faster for larger sys. than simple
 ;Centre of mass movement removal
 comm-mode                = Linear
-nstcomm                  = 200 ; 1.2ps, This should suffice
+nstcomm                  = 100 ; 1.0ps, This should suffice
 comm-grps                = 
-;nstcheckpoint            = 2000   ;12ps
+;nstcheckpoint            = 2000   ;10ps
 
 ; OPTIONS FOR ELECTROSTATICS AND VDW
 cutoff-scheme            = verlet      ; group is alternative
@@ -48,7 +66,7 @@ fourierspacing		       = 0.12			; PME grid
 ; OPTIONS FOR WEAK COUPLING ALGORITHMS 
 tcoupl                   = v-rescale   ; Thermostat, v-rescale or nose-hoover is also fine
 tc-grps                  = Protein POPC Water_and_ions		; Couple lipids and Water_and_ions seperatly
-tau-t                    = 1.2 1.2 1.2		; Time constant for temperature coupling
+tau-t                    = 1.0 1.0 1.0		; Time constant for temperature coupling
 ref-t                    = 310 310 310		; Desired temperature (K)
 Pcoupl                   = parrinello-rahman	; Barostat
 Pcoupltype               = semiisotropic	; Pressure in xy and z couple separately
@@ -78,23 +96,4 @@ niter                    = 20
 fcstep                   = 0
 nstcgsteep               = 1000
 nbfgscorr                = 10 ; number of correction steps for LBFGS
-
-; Pull code
-pull    = umbrella
-;pull_geometry   = position ;distance      ; can't get PMF with direction
-pull_geometry   = cylinder  ;From the reference group a cylinder is selected around the axis go- ing through the pull group with direction pull-vec using two radii. The radius pull-r1 gives the radius within which all the relative weights are one, between pull-r1 and pull-r0 the weights are switched to zero.
-pull_r1         = 1.2 ;inner radius, weights 1 (test values)
-pull_r0         = 2.4 ;outer radius, weights gradually switched to 0
-pull_dim        = N N Y
-pull_start      = yes ;yes-define initial COM distance > 0
-pull_ngroups    = 1
-pull_group0     = POPC    ;reference group
-pull_group1     = CYM_tail_end ;pulled group
-pull_vec1       = 0 0 1          ; pull along z-axis
-pull_rate1      = 0.00005       ; nm/ps, =5nm/100ns
-;pull_rate1      = 0.00196        ; nm/ps (value from Lukas, "stronger/faster pulling")
-pull_k1         =  500           ; kJ mol^-1 nm^-2
-;pull_k1         = 1000           ; kJ mol^-1 nm^-2
-pull_nstxout    = 1000 ; 6ps
-pull_nstfout    = 1000
 
