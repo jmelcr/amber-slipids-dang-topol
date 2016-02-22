@@ -1,5 +1,5 @@
 ; Settled version of TIP3p water model
-; with reduced masses (5x total) - tested with 5fs timestep
+; with reduced masses (4.5x total) - tested with 5fs timestep
  
 [ moleculetype ]
 ;	molname      nrexcl

@@ -31,6 +31,7 @@
 
 [ NH3 ]
   NH3     CT1     MNH3
+  NH3L    CTL1    MNH3  ; added by Joe 2016-02
   NH3     CT2     MNH3
   NH3     CT3     MNH3
 

@@ -75,6 +75,7 @@ O  	CL	1	0.122	627600.0 ; from OBL-CL
 ;------------------------------------------------------
  MCH3   NTL     2    0.158254  ; (?, Joe)
  MCH3   CTL2    2    0.167
+ MNH3   CTL1    2    0.158254
  MCH3   CEL1    2    0.167 ; added for CYF by Joe
  MCH3   O       2    0.167 ; added for CYF by Joe
 ; MCH3   MCH3    2    0.093
